@@ -98,12 +98,16 @@ Do* add_case(Do* arr_do_list, int& size, int& size_add) {
         getline(cin, arr_do_list[i].name);
         cout << "Добавьте описание: \n";
         getline(cin, arr_do_list[i].description);
-        cout << "Введите время выполнения (дд.мм.гггг чч:мм) \n";
-        cin >> arr_do_list[i].day
-            >> arr_do_list[i].month
-            >> arr_do_list[i].year
-            >> arr_do_list[i].hour
-            >> arr_do_list[i].min;
+        cout << "Введите число: \n";
+        cin >> arr_do_list[i].day;
+        cout << "Введите месяц: \n";
+        cin >> arr_do_list[i].month;
+        cout << "Введите год: \n";
+        cin >> arr_do_list[i].year;
+        cout << "Введите часы: \n";
+        cin >> arr_do_list[i].hour;
+        cout << "Введите минуты: \n";
+        cin >> arr_do_list[i].min;
         cout << "Выберите приоритет: \n"
             << "[1] - Низкий приоритет \n"
             << "[2] - Средний приоритет \n"
@@ -144,6 +148,9 @@ void output_case(Do* arr_do_list, int& size_add, int& d, int& m, int& y, int& h,
             << "[1] - День \n"
             << "[2] - Неделя \n"
             << "[3] - Месяц \n"
+            << " "
+            << "[4] - (пока не работает)Сортировка по времени \n"
+            << "[5] - (пока не работает)Сортировка по приоритету \n"
             << "[0] - Выход в главное меню \n";
         cin >> och;
         switch (och) {
@@ -242,6 +249,36 @@ void output_case(Do* arr_do_list, int& size_add, int& d, int& m, int& y, int& h,
             system("cls");
             break;
         }
+        case 4: {
+            // не доработано
+            Do temp;
+            for (int i = 0; i < size_add; i++)
+            {
+                for (int j = 0; j < size_add; j++)
+                {
+                    if (arr_do_list[i].hour > arr_do_list[j].hour &&
+                        arr_do_list[i].min > arr_do_list[j].min)
+                    {
+                        temp = arr_do_list[i];
+                        arr_do_list[i] = arr_do_list[j];
+                        arr_do_list[j] = temp;
+                    }
+                }
+            }
+            for (int i = 0; i < size_add; i++) {
+                
+                    cout << arr_do_list[i].name << " \n";
+                    cout << arr_do_list[i].description << " \n";
+                    cout << arr_do_list[i].priority << " \n";
+                    cout << arr_do_list[i].day << '.' << arr_do_list[i].month << '.'
+                        << arr_do_list[i].year << ' ' << arr_do_list[i].hour << ':'
+                        << arr_do_list[i].min << " \n\n";
+                
+            }
+        }
+        case 5: {
+
+        }
         default:
             break;
         }
@@ -295,36 +332,58 @@ Do* delete_case(Do* arr_do_list, string& del_name, int& size_add) {
 }
 
 Do* change_case(Do* arr_do_list, int& size_add) {
-    int change_c;
-    //output_case(arr_do_list, size_add);
-
-    cout << "Введите номер дела, которое хотите отредактировать: \n";
-    cin >> change_c;
-
-    cout << "Введите наименование дела: \n";
+    string change_c;
+    int chng = 0, count1 = 0;
+    cout << "Введите название дела, которое хотите отредактировать: \n";
     cin.get();
-    getline(cin, arr_do_list[change_c - 1].name);
-    cout << "Добавьте описание: \n";
-    getline(cin, arr_do_list[change_c - 1].description);
-    cout << "Введите время выполнения (дд.мм.гггг чч:мм) \n";
-    cin >> arr_do_list[change_c - 1].day
-        >> arr_do_list[change_c - 1].month
-        >> arr_do_list[change_c - 1].year
-        >> arr_do_list[change_c - 1].hour
-        >> arr_do_list[change_c - 1].min;
-    cout << "Выберите приоритет: \n"
-        << "[1] - Низкий приоритет \n"
-        << "[2] - Средний приоритет \n"
-        << "[3] - Высокий приоритет \n";
-    cin >> change_c;
-    if (change_c == 1) {
-        arr_do_list[change_c - 1].priority = "Низкий приоритет";
+    getline(cin, change_c);
+    for (int i = 0; i < size_add; i++) {
+        if (arr_do_list[i].name == change_c) {
+            cout << "Номер в списке дел [" << i + 1 << "] \n";
+            cout << arr_do_list[i].name << " \n";
+            cout << arr_do_list[i].description << " \n";
+            cout << arr_do_list[i].priority << " \n";
+            cout << arr_do_list[i].day << '.' << arr_do_list[i].month << '.'
+                << arr_do_list[i].year << ' ' << arr_do_list[i].hour << ':'
+                << arr_do_list[i].min << " \n\n";
+            count1++;
+        }
+
+        if (count1 == 1) {
+            cout << "Введите наименование дела: \n";
+            getline(cin, arr_do_list[i].name);
+            cout << "Добавьте описание: \n";
+            getline(cin, arr_do_list[i].description);
+            cout << "Введите число: \n";
+            cin >> arr_do_list[i].day;
+            cout << "Введите месяц: \n";
+            cin >> arr_do_list[i].month;
+            cout << "Введите год: \n";
+            cin >> arr_do_list[i].year;
+            cout << "Введите часы: \n";
+            cin >> arr_do_list[i].hour;
+            cout << "Введите минуты: \n";
+            cin >> arr_do_list[i].min;
+            cout << "Выберите приоритет: \n"
+                << "[1] - Низкий приоритет \n"
+                << "[2] - Средний приоритет \n"
+                << "[3] - Высокий приоритет \n";
+            cin >> chng;
+            if (chng == 1) {
+                arr_do_list[i].priority = "Низкий приоритет";
+            }
+            else if (chng == 2) {
+                arr_do_list[i].priority = "Средний приоритет";
+            }
+            else if (chng == 3) {
+                arr_do_list[i].priority = "Высокий приоритет";
+            }
+            break;
+        }
+        
     }
-    else if (change_c == 2) {
-        arr_do_list[change_c - 1].priority = "Средний приоритет";
-    }
-    else if (change_c == 3) {
-        arr_do_list[change_c - 1].priority = "Высокий приоритет";
+    if (count1 == 0) {
+        cout << "\n\tНет данных!\n";
     }
     cout << "\n\tСохранено!\n";
     Sleep(800);
@@ -333,19 +392,8 @@ Do* change_case(Do* arr_do_list, int& size_add) {
 
 void search_case(Do* arr_do_list, int& size_add, int& d, int& m, int& y, int& h, int& mi) {
     // это функция сортировки, убрать ее отсюда
-   /* Do temp;
-    for (int i = 0; i < size_add; i++)
-    {
-        for (int j = 0; j < size_add; j++)
-        {
-            if (strcmp(arr_do_list[i].name.c_str(), arr_do_list[j].name.c_str()) == 1)
-            {
-                temp = arr_do_list[i];
-                arr_do_list[i] = arr_do_list[j];
-                arr_do_list[j] = temp;
-            }
-        }
-    }*/
+   
+    
     int srch = 0, prior_srch = 0, count = 0;//srch - для выбора в меню поиска, prior_srch - для поиска по приоритету, 
     string search_name;                       //count - для проверки записи, search_name - для поиска по имени и описанию
     
@@ -495,7 +543,16 @@ void search_case(Do* arr_do_list, int& size_add, int& d, int& m, int& y, int& h,
     case 4: {
 
         cout << "Введите дату и время выполнения (дд.мм.гггг чч:мм) : \n";
-        cin >> d >> m >> y >> h >> mi;
+        cout << "Введите число: \n";
+        cin >> d;
+        cout << "Введите месяц: \n";
+        cin >> m;
+        cout << "Введите год: \n";
+        cin >> y;
+        cout << "Введите часы: \n";
+        cin >> h;
+        cout << "Введите минуты: \n";
+        cin >> mi;
         for (int i = 0; i < size_add; i++) {
             if (arr_do_list[i].day == d &&
                 arr_do_list[i].month == m &&
