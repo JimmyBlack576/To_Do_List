@@ -276,8 +276,37 @@ void output_case(Do* arr_do_list, int& size_add, int& d, int& m, int& y, int& h,
                 
             }
         }
+              break;
         case 5: {
+            Do temp;
+            for (int i = 0; i < size_add; i++)
+            {
+                for (int j = 0; j < size_add; j++)
+                {
+                    if (arr_do_list[i].priority == "Высокий приоритет" )
+                    {
+                        temp = arr_do_list[i];
+                        arr_do_list[i] = arr_do_list[j];
+                        arr_do_list[j] = temp;
+                    }
+                    else if (arr_do_list[i].priority == "Средний приоритет") {
+                        temp = arr_do_list[i];
+                        arr_do_list[i] = arr_do_list[j];
+                        arr_do_list[j] = temp;
+                    }
+                }
+            }
+            break;
+            for (int i = 0; i < size_add; i++) {
 
+                cout << arr_do_list[i].name << " \n";
+                cout << arr_do_list[i].description << " \n";
+                cout << arr_do_list[i].priority << " \n";
+                cout << arr_do_list[i].day << '.' << arr_do_list[i].month << '.'
+                    << arr_do_list[i].year << ' ' << arr_do_list[i].hour << ':'
+                    << arr_do_list[i].min << " \n\n";
+
+            }
         }
         default:
             break;
