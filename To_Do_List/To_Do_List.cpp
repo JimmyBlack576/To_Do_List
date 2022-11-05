@@ -148,8 +148,8 @@ void output_case(Do* arr_do_list, int& size_add, int& d, int& m, int& y, int& h,
             << "[1] - День \n"
             << "[2] - Неделя \n"
             << "[3] - Месяц \n"
-            << " "
-            << "[4] - (пока не работает)Сортировка по времени \n"
+            << " \n"
+            << "[4] - Сортировка по времени \n"
             << "[5] - (пока не работает)Сортировка по приоритету \n"
             << "[0] - Выход в главное меню \n";
         cin >> och;
@@ -250,19 +250,29 @@ void output_case(Do* arr_do_list, int& size_add, int& d, int& m, int& y, int& h,
             break;
         }
         case 4: {
-            // не доработано
+            
             Do temp;
             for (int i = 0; i < size_add; i++)
             {
                 for (int j = 0; j < size_add; j++)
                 {
-                    if (arr_do_list[i].hour > arr_do_list[j].hour &&
-                        arr_do_list[i].min > arr_do_list[j].min)
-                    {
+                    if ((arr_do_list[i].year * 365 + arr_do_list[i].month * 30 + arr_do_list[i].day) ==//сравнение даты
+                        (arr_do_list[j].year * 365 + arr_do_list[j].month * 30 + arr_do_list[j].day)) {
+                        if ((arr_do_list[i].hour * 60 * 60 + arr_do_list[i].min * 60) <//сравнение по времени
+                            (arr_do_list[j].hour * 60 * 60 + arr_do_list[j].min * 60))
+                        {
+                            temp = arr_do_list[i];
+                            arr_do_list[i] = arr_do_list[j];
+                            arr_do_list[j] = temp;
+                        }
+                    }
+                    else if ((arr_do_list[i].year * 365 + arr_do_list[i].month * 30 + arr_do_list[i].day) <
+                        (arr_do_list[j].year * 365 + arr_do_list[j].month * 30 + arr_do_list[j].day)) {
                         temp = arr_do_list[i];
                         arr_do_list[i] = arr_do_list[j];
                         arr_do_list[j] = temp;
-                    }
+                         }
+                    
                 }
             }
             for (int i = 0; i < size_add; i++) {
