@@ -150,7 +150,7 @@ void output_case(Do* arr_do_list, int& size_add, int& d, int& m, int& y, int& h,
             << "[3] - Месяц \n"
             << " \n"
             << "[4] - Сортировка по времени \n"
-            << "[5] - (пока не работает)Сортировка по приоритету \n"
+            << "[5] - Сортировка по приоритету \n"
             << "[0] - Выход в главное меню \n";
         cin >> och;
         switch (och) {
@@ -286,6 +286,8 @@ void output_case(Do* arr_do_list, int& size_add, int& d, int& m, int& y, int& h,
                 
             }
         }
+              system("pause");
+              system("cls");
               break;
         case 5: {
             Do temp;
@@ -306,6 +308,8 @@ void output_case(Do* arr_do_list, int& size_add, int& d, int& m, int& y, int& h,
                     }
                 }
             }
+            system("pause");
+            system("cls");
             break;
             for (int i = 0; i < size_add; i++) {
 
