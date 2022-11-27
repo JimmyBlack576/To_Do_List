@@ -417,9 +417,7 @@ Do* change_case(Do* arr_do_list, int& size_add) {
 }
 
 void search_case(Do* arr_do_list, int& size_add, int& d, int& m, int& y, int& h, int& mi) {
-    // это функция сортировки, убрать ее отсюда
-   
-    
+
     int srch = 0, prior_srch = 0, count = 0;//srch - для выбора в меню поиска, prior_srch - для поиска по приоритету, 
     string search_name;                       //count - для проверки записи, search_name - для поиска по имени и описанию
     
